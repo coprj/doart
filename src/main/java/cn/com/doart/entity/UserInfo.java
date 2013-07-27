@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "T_USER_INFO")
+@Table(name = "d_user_info")
 @MetaData(title = "用户信息")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class UserInfo extends PersistableEntity<Long> {

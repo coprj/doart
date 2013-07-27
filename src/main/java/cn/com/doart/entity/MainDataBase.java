@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-@Table(name = "T_MAIN_DATABASE")
+@Table(name = "d_main_database")
 @MetaData(title = "主数据信息")
 public class MainDataBase extends PersistableEntity<Long>{
     
