@@ -1,4 +1,4 @@
-package cn.com.doart.entity;
+package cn.com.doart.energy.entity;
 
 import java.sql.Blob;
 import java.sql.Date;

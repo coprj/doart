@@ -1,4 +1,4 @@
-package cn.com.doart.entity;
+package cn.com.doart.energy.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "d_equipment_info")
-@MetaData(title = "员工信息")
+@MetaData(title = "设备信息")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class EquipmentInfo extends PersistableEntity<Long> {
 
