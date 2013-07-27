@@ -7,30 +7,24 @@
     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
 
 	<beans profile="default">
-		<!-- 定制扩展PropertyPlaceholder，实现从数据库加载覆盖属性配置 -->
-		<bean class="lab.s2jh.cfg.DynamicPropertyPlaceholderConfigurer">
+		<!-- 缺省PropertyPlaceholder定义 -->
+		<bean
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 			<property name="locations">
 				<list>
 					<value>classpath:/application.properties</value>
 				</list>
 			</property>
 			<property name="ignoreResourceNotFound" value="true" />
-			<property name="dataSource" ref="dataSource" />
-			<property name="tableName" value="T_SYS_CFG_PROP" />
-			<property name="nameColumn" value="prop_key" />
-			<property name="valueColumn" value="prop_dynamic_value" />
 		</bean>
 
-		<!-- H2文件模式数据库，实际开发替换成其他MySQL、Oracle等数据库配置即可 -->
-		<bean id="dataSourceSpied"
-			class="org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean">
-			<property name="databaseName" value="c:\\h2\\prototype" />
-			<property name="databaseConfigurer">
-				<bean
-					class="org.springframework.jdbc.datasource.embedded.H2EmbeddedFileDatabaseConfigurer"
-					factory-method="getInstance">
-				</bean>
-			</property>
+		<bean id="dataSourceSpied" class="org.apache.tomcat.jdbc.pool.DataSource"
+			destroy-method="close" depends-on="extSlf4jSpyLogDelegator">
+			<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy" />
+			<property name="url"
+				value="jdbc:log4jdbc:mysql://localhost:3306/doart?useUnicode=true&amp;characterEncoding=utf-8" />
+			<property name="username" value="doart" />
+			<property name="password" value="doart" />
 		</bean>
 
 		<bean id="extSlf4jSpyLogDelegator" class="net.sf.log4jdbc.ExtSlf4jSpyLogDelegator" />
